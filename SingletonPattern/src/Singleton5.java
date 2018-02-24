@@ -17,7 +17,7 @@
  */
 public class Singleton5 {
 
-    private static class SingletonHolder{
+    private static class SingletonHolder {
         private static final Singleton5 SINGLETON_5 = new Singleton5();
     }
 
