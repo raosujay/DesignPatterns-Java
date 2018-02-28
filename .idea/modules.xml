@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/FacadePattern/FacadePattern.iml" filepath="$PROJECT_DIR$/FacadePattern/FacadePattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/FactoryPattern/FactoryPattern.iml" filepath="$PROJECT_DIR$/FactoryPattern/FactoryPattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/FilterPattern/FilterPattern.iml" filepath="$PROJECT_DIR$/FilterPattern/FilterPattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FlyweightPattern/FlyweightPattern.iml" filepath="$PROJECT_DIR$/FlyweightPattern/FlyweightPattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/Pattern.iml" filepath="$PROJECT_DIR$/Pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/PrototypePattern/PrototypePattern.iml" filepath="$PROJECT_DIR$/PrototypePattern/PrototypePattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/SingletonPattern/SingletonPattern.iml" filepath="$PROJECT_DIR$/SingletonPattern/SingletonPattern.iml" />
