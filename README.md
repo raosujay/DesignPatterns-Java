@@ -1,107 +1,107 @@
-# Pattern
+#DesignPatterns - Java
 
+**Introduction to design patterns**
 
-设计模式简介
+Design patterns represent best practices and are commonly used by experienced object-oriented software developers. Design patterns are solutions to common problems faced by software developers during the software development process. These solutions are the result of trial and error by numerous software developers over a long period of time.
 
-设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。
+A design pattern is a set of code design experiences that have been used repeatedly, are known to most people, and are classified and cataloged. The purpose of using design patterns is to reuse code, make the code easier to understand by others, and ensure code reliability. There is no doubt that design patterns are win-win for ourselves, others, and the system. Design patterns make code compilation truly engineering. Design patterns are the cornerstone of software engineering, just like the bricks and stones of a building. Reasonable use of design patterns in projects can perfectly solve many problems. Each pattern has corresponding principles in reality to correspond to it. Each pattern describes a problem that keeps recurring around us, and the solution to the problem. Core solution, which is why design patterns can be widely used.
+What is GOF (Gang of Four)?
 
-设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，每种模式都描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是设计模式能被广泛应用的原因。
-什么是 GOF（四人帮，全拼 Gang of Four）？
+In 1994, Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides co-authored a book called Design Patterns - Elements of Reusable Object-Oriented Software (Chinese translation: Design Patterns - Reusable Object-Oriented Software Elements) book, which first mentioned the concept of design patterns in software development.
 
-在 1994 年，由 Erich Gamma、Richard Helm、Ralph Johnson 和 John Vlissides 四人合著出版了一本名为 Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素） 的书，该书首次提到了软件开发中设计模式的概念。
+The four authors are collectively known as GOF (Gang of Four). The design patterns they proposed are mainly based on the following object-oriented design principles.
 
-四位作者合称 GOF（四人帮，全拼 Gang of Four）。他们所提出的设计模式主要是基于以下的面向对象设计原则。
+     Program the interface rather than the implementation.
+     Prefer object composition over inheritance.
 
-    对接口编程而不是对实现编程。
-    优先使用对象组合而不是继承。
+**Use of design patterns**
 
-设计模式的使用
+There are two main uses of design patterns in software development.
+A common platform for developers
 
-设计模式在软件开发中的两个主要用途。
-开发人员的共同平台
+Design patterns provide a standard system of terminology that is context-specific. For example, the singleton design pattern means using a single object so that all developers familiar with the singleton design pattern can use the single object and can tell each other that the program uses the singleton pattern.
+best practices
 
-设计模式提供了一个标准的术语系统，且具体到特定的情景。例如，单例设计模式意味着使用单个对象，这样所有熟悉单例设计模式的开发人员都能使用单个对象，并且可以通过这种方式告诉对方，程序使用的是单例模式。
-最佳的实践
+Design patterns have evolved over a long period of time and they provide optimal solutions to common problems faced during software development. Learning these patterns helps less experienced developers learn software design in a quick and easy way.
+Types of design patterns
 
-设计模式已经经历了很长一段时间的发展，它们提供了软件开发过程中面临的一般问题的最佳解决方案。学习这些模式有助于经验不足的开发人员通过一种简单快捷的方式来学习软件设计。
-设计模式的类型
+According to the design pattern reference book Design Patterns - Elements of Reusable Object-Oriented Software (Chinese translation: Design Patterns - Reusable Object-Oriented Software Elements), there are a total of 23 design patterns. These patterns can be divided into three major categories: Creational Patterns, Structural Patterns, and Behavioral Patterns. Of course, we'll also discuss another category of design patterns: J2EE design patterns.
+Serial Number Pattern & Description Included
 
-根据设计模式的参考书 Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素） 中所提到的，总共有 23 种设计模式。这些模式可以分为三大类：创建型模式（Creational Patterns）、结构型模式（Structural Patterns）、行为型模式（Behavioral Patterns）。当然，我们还会讨论另一类设计模式：J2EE 设计模式。
-序号	模式 & 描述	包括
-1	创建型模式
-这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式，而不是使用 new 运算符直接实例化对象。这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活。 	
+1 **Creational model**
+These design patterns provide a way to hide the creation logic while creating an object, rather than instantiating the object directly using the new operator. This allows the program to be more flexible in determining which objects need to be created for a given instance.
 
-    工厂模式（Factory Pattern）
-    抽象工厂模式（Abstract Factory Pattern）
-    单例模式（Singleton Pattern）
-    建造者模式（Builder Pattern）
-    原型模式（Prototype Pattern）
+     Factory Pattern
+     Abstract Factory Pattern
+     Singleton Pattern
+     Builder Pattern
+     Prototype Pattern
 
-2	结构型模式
-这些设计模式关注类和对象的组合。继承的概念被用来组合接口和定义组合对象获得新功能的方式。 	
+2 **Structural pattern**
+These design patterns focus on the composition of classes and objects. The concept of inheritance is used to compose interfaces and define the way in which composed objects acquire new functionality.
 
-    适配器模式（Adapter Pattern）
-    桥接模式（Bridge Pattern）
-    过滤器模式（Filter、Criteria Pattern）
-    组合模式（Composite Pattern）
-    装饰器模式（Decorator Pattern）
-    外观模式（Facade Pattern）
-    享元模式（Flyweight Pattern）
-    代理模式（Proxy Pattern）
+     Adapter Pattern
+     Bridge Pattern
+     Filter pattern (Filter, Criteria Pattern)
+     Composite Pattern
+     Decorator Pattern
+     Facade Pattern
+     Flyweight Pattern
+     Proxy Pattern
 
-3	行为型模式
-这些设计模式特别关注对象之间的通信。 	
+3 **Behavioral patterns**
+These design patterns focus specifically on communication between objects.
 
-    责任链模式（Chain of Responsibility Pattern）
-    命令模式（Command Pattern）
-    解释器模式（Interpreter Pattern）
-    迭代器模式（Iterator Pattern）
-    中介者模式（Mediator Pattern）
-    备忘录模式（Memento Pattern）
-    观察者模式（Observer Pattern）
-    状态模式（State Pattern）
-    空对象模式（Null Object Pattern）
-    策略模式（Strategy Pattern）
-    模板模式（Template Pattern）
-    访问者模式（Visitor Pattern）
+     Chain of Responsibility Pattern
+     Command Pattern
+     Interpreter Pattern
+     Iterator Pattern
+     Mediator Pattern
+     Memento Pattern
+     Observer Pattern
+     State Pattern
+     Null Object Pattern
+     Strategy Pattern
+     Template Pattern
+     Visitor Pattern
 
-4	J2EE 模式
-这些设计模式特别关注表示层。这些模式是由 Sun Java Center 鉴定的。 	
+4 **J2EE mode**
+These design patterns focus specifically on the presentation layer. These modes are certified by Sun Java Center.
 
-    MVC 模式（MVC Pattern）
-    业务代表模式（Business Delegate Pattern）
-    组合实体模式（Composite Entity Pattern）
-    数据访问对象模式（Data Access Object Pattern）
-    前端控制器模式（Front Controller Pattern）
-    拦截过滤器模式（Intercepting Filter Pattern）
-    服务定位器模式（Service Locator Pattern）
-    传输对象模式（Transfer Object Pattern）
+     MVC Pattern
+     Business Delegate Pattern
+     Composite Entity Pattern
+     Data Access Object Pattern
+     Front Controller Pattern
+     Intercepting Filter Pattern
+     Service Locator Pattern
+     Transfer Object Pattern
 
-下面用一个图片来整体描述一下设计模式之间的关系：
+The following uses a picture to overall describe the relationship between design patterns:
 
-设计模式之间的关系
-设计模式的六大原则
+The relationship between design patterns
+**Six principles of design patterns**
 
-1、开闭原则（Open Close Principle）
+1. **Open Close Principle**
 
-开闭原则的意思是：对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。想要达到这样的效果，我们需要使用接口和抽象类，后面的具体设计中我们会提到这点。
+The open-closed principle means: open for expansion, closed for modification. When the program needs to be expanded, the original code cannot be modified to achieve a hot-swappable effect. In short, it is to make the program scalable and easy to maintain and upgrade. To achieve this effect, we need to use interfaces and abstract classes, which we will mention in the specific design later.
 
-2、里氏代换原则（Liskov Substitution Principle）
+2. **Liskov Substitution Principle**
 
-里氏代换原则是面向对象设计的基本原则之一。 里氏代换原则中说，任何基类可以出现的地方，子类一定可以出现。LSP 是继承复用的基石，只有当派生类可以替换掉基类，且软件单位的功能不受到影响时，基类才能真正被复用，而派生类也能够在基类的基础上增加新的行为。里氏代换原则是对开闭原则的补充。实现开闭原则的关键步骤就是抽象化，而基类与子类的继承关系就是抽象化的具体实现，所以里氏代换原则是对实现抽象化的具体步骤的规范。
+Liskov substitution principle is one of the basic principles of object-oriented design. The Liskov Substitution Principle says that wherever a base class can appear, a subclass can definitely appear. LSP is the cornerstone of inheritance reuse. Only when the derived class can replace the base class and the function of the software unit is not affected, the base class can be truly reused, and the derived class can also add new ones on the basis of the base class. Behavior. Liskov substitution principle is a supplement to the opening and closing principle. The key step to realize the opening and closing principle is abstraction, and the inheritance relationship between base classes and subclasses is the specific implementation of abstraction, so the Liskov substitution principle is a specification for the specific steps to achieve abstraction.
 
-3、依赖倒转原则（Dependence Inversion Principle）
+3. **Dependence Inversion Principle**
 
-这个原则是开闭原则的基础，具体内容：针对接口编程，依赖于抽象而不依赖于具体。
+This principle is the basis of the opening and closing principle. The specific content: programming for interfaces relies on abstraction rather than concreteness.
 
-4、接口隔离原则（Interface Segregation Principle）
+4. **Interface Segregation Principle**
 
-这个原则的意思是：使用多个隔离的接口，比使用单个接口要好。它还有另外一个意思是：降低类之间的耦合度。由此可见，其实设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。
+This principle means: It is better to use multiple isolated interfaces than to use a single interface. It also has another meaning: reducing the coupling between classes. It can be seen that design patterns are actually software design ideas that start from large-scale software architecture and are easy to upgrade and maintain. It emphasizes reducing dependencies and reducing coupling.
 
-5、迪米特法则，又称最少知道原则（Demeter Principle）
+5. **Demeter's law, also known as the least known principle (Demeter Principle)**
 
-最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。
+The principle of least known means that an entity should interact with other entities as little as possible so that the system functional modules are relatively independent.
 
-6、合成复用原则（Composite Reuse Principle）
+6. **Composite Reuse Principle**
 
-合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。
+The principle of composition and reuse means: try to use composition/aggregation instead of inheritance.
