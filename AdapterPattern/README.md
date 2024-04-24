@@ -74,7 +74,6 @@ public class VlcPlayer implements AdvancedMediaPlayer{
 Mp4Player.java
 
 public class Mp4Player implements AdvancedMediaPlayer{
-
     @Override
     public void playVlc(String fileName) {
        //do nothing
@@ -93,9 +92,7 @@ Create an adapter class that implements the MediaPlayer interface.
 MediaAdapter.java
 
 public class MediaAdapter implements MediaPlayer {
-
     AdvancedMediaPlayer advancedMusicPlayer;
-
     public MediaAdapter(String audioType){
        if(audioType.equalsIgnoreCase("vlc") ){
           advancedMusicPlayer = new VlcPlayer();
@@ -122,10 +119,8 @@ AudioPlayer.java
 
 public class AudioPlayer implements MediaPlayer {
     MediaAdapter mediaAdapter;
-
     @Override
     public void play(String audioType, String fileName) {
-
        //Built-in support for playing mp3 music files
        if(audioType.equalsIgnoreCase("mp3")){
           System.out.println("Playing mp3 file. Name: "+ fileName);
@@ -152,7 +147,6 @@ AdapterPatternDemo.java
 public class AdapterPatternDemo {
     public static void main(String[] args) {
        AudioPlayer audioPlayer = new AudioPlayer();
-
        audioPlayer.play("mp3", "beyond the horizon.mp3");
        audioPlayer.play("mp4", "alone.mp4");
        audioPlayer.play("vlc", "far far away.vlc");
