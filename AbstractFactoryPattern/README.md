@@ -1,267 +1,243 @@
+abstract factory pattern
 
-抽象工厂模式
+The Abstract Factory Pattern creates other factories around a super factory. The Gigafactory is also known as the factory of other factories. This type of design pattern is a creational pattern, which provides an optimal way to create objects.
 
-抽象工厂模式（Abstract Factory Pattern）是围绕一个超级工厂创建其他工厂。该超级工厂又称为其他工厂的工厂。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。
+In the abstract factory pattern, the interface is a factory responsible for creating a related object without explicitly specifying their class. Each generated factory can provide objects according to the factory pattern.
+introduce
 
-在抽象工厂模式中，接口是负责创建一个相关对象的工厂，不需要显式指定它们的类。每个生成的工厂都能按照工厂模式提供对象。
-介绍
+Intent: Provide an interface for creating a series of related or interdependent objects without specifying their concrete classes.
 
-意图：提供一个创建一系列相关或相互依赖对象的接口，而无需指定它们具体的类。
+Main solution: Mainly solve the problem of interface selection.
 
-主要解决：主要解决接口选择的问题。
+When to use: The system's products have more than one product family, and the system only consumes products from one of the families.
 
-何时使用：系统的产品有多于一个的产品族，而系统只消费其中某一族的产品。
+How to solve: Define multiple products in a product family.
 
-如何解决：在一个产品族里面，定义多个产品。
+Key code: Aggregate multiple similar products in a factory.
 
-关键代码：在一个工厂里聚合多个同类产品。
+Application example: After working, in order to attend some parties, you must have two or more sets of clothes, such as business clothes (complete sets, a series of specific products), fashion clothes (complete sets, a series of specific products), or even for a family For example, there may be business women's clothing, business men's clothing, fashionable women's clothing, and fashionable men's clothing. These are also complete sets, that is, a series of specific products. Assume a situation (which does not exist in reality, otherwise, there is no way to enter communism, but it is helpful to illustrate the abstract factory model). In your home, a certain wardrobe (concrete factory) can only store a certain kind of such Clothes (set, a series of specific products), every time you pick up this set of clothes, you will naturally take them out of this wardrobe. Use OO thinking to understand that all wardrobes (concrete factories) are wardrobes (abstract factories), and each set of clothes includes specific tops (a specific product), pants (a specific product) product), these concrete tops are actually tops (an abstract product), and the concrete pants are also pants (another abstract product).
 
-应用实例：工作了，为了参加一些聚会，肯定有两套或多套衣服吧，比如说有商务装（成套，一系列具体产品）、时尚装（成套，一系列具体产品），甚至对于一个家庭来说，可能有商务女装、商务男装、时尚女装、时尚男装，这些也都是成套的，即一系列具体产品。假设一种情况（现实中是不存在的，要不然，没法进入共产主义了，但有利于说明抽象工厂模式），在您的家中，某一个衣柜（具体工厂）只能存放某一种这样的衣服（成套，一系列具体产品），每次拿这种成套的衣服时也自然要从这个衣柜中取出了。用 OO 的思想去理解，所有的衣柜（具体工厂）都是衣柜类的（抽象工厂）某一个，而每一件成套的衣服又包括具体的上衣（某一具体产品），裤子（某一具体产品），这些具体的上衣其实也都是上衣（抽象产品），具体的裤子也都是裤子（另一个抽象产品）。
+Advantages: When multiple objects in a product family are designed to work together, it ensures that the client always uses only objects from the same product family.
 
-优点：当一个产品族中的多个对象被设计成一起工作时，它能保证客户端始终只使用同一个产品族中的对象。
+Disadvantages: Product family expansion is very difficult. To add a certain product of a series, you need to add code to the abstract Creator as well as to the specific one.
 
-缺点：产品族扩展非常困难，要增加一个系列的某一产品，既要在抽象的 Creator 里加代码，又要在具体的里面加代码。
+Usage scenarios: 1. QQ skin change, the whole set is changed together. 2. Generate programs for different operating systems.
 
-使用场景： 1、QQ 换皮肤，一整套一起换。 2、生成不同操作系统的程序。
+Note: Product families are difficult to expand, but product levels are easy to expand.
+accomplish
 
-注意事项：产品族难扩展，产品等级易扩展。
-实现
+We will create Shape and Color interfaces and entity classes that implement these interfaces. The next step is to create the abstract factory class AbstractFactory. Then define factory classes ShapeFactory and ColorFactory, both of which extend AbstractFactory. Then create a factory creator/generator class FactoryProducer.
 
-我们将创建 Shape 和 Color 接口和实现这些接口的实体类。下一步是创建抽象工厂类 AbstractFactory。接着定义工厂类 ShapeFactory 和 ColorFactory，这两个工厂类都是扩展了 AbstractFactory。然后创建一个工厂创造器/生成器类 FactoryProducer。
+AbstractFactoryPatternDemo, our demo class uses a FactoryProducer to obtain an AbstractFactory object. It will pass shape information Shape (CIRCLE / RECTANGLE / SQUARE) to the AbstractFactory in order to get the type of object it needs. At the same time, it also passes color information Color (RED / GREEN / BLUE) to AbstractFactory in order to obtain the type of object it requires.
+UML diagram of abstract factory pattern
+step 1
 
-AbstractFactoryPatternDemo，我们的演示类使用 FactoryProducer 来获取 AbstractFactory 对象。它将向 AbstractFactory 传递形状信息 Shape（CIRCLE / RECTANGLE / SQUARE），以便获取它所需对象的类型。同时它还向 AbstractFactory 传递颜色信息 Color（RED / GREEN / BLUE），以便获取它所需对象的类型。
-抽象工厂模式的 UML 图
-步骤 1
-
-为形状创建一个接口。
+Create an interface for the shape.
 
 Shape.java
 
 public interface Shape {
-   void draw();
+    void draw();
 }
 
-步骤 2
+Step 2
 
-创建实现接口的实体类。
+Create an entity class that implements the interface.
 
 Rectangle.java
 
 public class Rectangle implements Shape {
 
-   @Override
-   public void draw() {
-      System.out.println("Inside Rectangle::draw() method.");
-   }
+    @Override
+    public void draw() {
+       System.out.println("Inside Rectangle::draw() method.");
+    }
 }
 
 Square.java
 
 public class Square implements Shape {
 
-   @Override
-   public void draw() {
-      System.out.println("Inside Square::draw() method.");
-   }
+    @Override
+    public void draw() {
+       System.out.println("Inside Square::draw() method.");
+    }
 }
 
 Circle.java
 
 public class Circle implements Shape {
 
-   @Override
-   public void draw() {
-      System.out.println("Inside Circle::draw() method.");
-   }
+    @Override
+    public void draw() {
+       System.out.println("Inside Circle::draw() method.");
+    }
 }
 
-步骤 3
+Step 3
 
-为颜色创建一个接口。
+Create an interface for colors.
 
 Color.java
 
 public interface Color {
-   void fill();
+    void fill();
 }
 
-步骤4
+Step 4
 
-创建实现接口的实体类。
+Create an entity class that implements the interface.
 
 Red.java
 
 public class Red implements Color {
 
-   @Override
-   public void fill() {
-      System.out.println("Inside Red::fill() method.");
-   }
+    @Override
+    public void fill() {
+       System.out.println("Inside Red::fill() method.");
+    }
 }
 
 Green.java
 
 public class Green implements Color {
 
-   @Override
-   public void fill() {
-      System.out.println("Inside Green::fill() method.");
-   }
+    @Override
+    public void fill() {
+       System.out.println("Inside Green::fill() method.");
+    }
 }
 
 Blue.java
 
 public class Blue implements Color {
 
-   @Override
-   public void fill() {
-      System.out.println("Inside Blue::fill() method.");
-   }
+    @Override
+    public void fill() {
+       System.out.println("Inside Blue::fill() method.");
+    }
 }
 
-步骤 5
+Step 5
 
-为 Color 和 Shape 对象创建抽象类来获取工厂。
+Create abstract classes for Color and Shape objects to obtain factories.
 
 AbstractFactory.java
 
 public abstract class AbstractFactory {
-   abstract Color getColor(String color);
-   abstract Shape getShape(String shape) ;
+    abstract Color getColor(String color);
+    abstract Shape getShape(String shape);
 }
 
-步骤 6
+Step 6
 
-创建扩展了 AbstractFactory 的工厂类，基于给定的信息生成实体类的对象。
+Create a factory class that extends AbstractFactory to generate objects of entity classes based on given information.
 
 ShapeFactory.java
 
 public class ShapeFactory extends AbstractFactory {
     
-   @Override
-   public Shape getShape(String shapeType){
-      if(shapeType == null){
-         return null;
-      }        
-      if(shapeType.equalsIgnoreCase("CIRCLE")){
-         return new Circle();
-      } else if(shapeType.equalsIgnoreCase("RECTANGLE")){
-         return new Rectangle();
-      } else if(shapeType.equalsIgnoreCase("SQUARE")){
-         return new Square();
-      }
-      return null;
-   }
+    @Override
+    public Shape getShape(String shapeType){
+       if(shapeType == null){
+          return null;
+       }
+       if(shapeType.equalsIgnoreCase("CIRCLE")){
+          return new Circle();
+       } else if(shapeType.equalsIgnoreCase("RECTANGLE")){
+          return new Rectangle();
+       } else if(shapeType.equalsIgnoreCase("SQUARE")){
+          return new Square();
+       }
+       return null;
+    }
    
-   @Override
-   Color getColor(String color) {
-      return null;
-   }
+    @Override
+    Color getColor(String color) {
+       return null;
+    }
 }
 
 ColorFactory.java
 
 public class ColorFactory extends AbstractFactory {
     
-   @Override
-   public Shape getShape(String shapeType){
-      return null;
-   }
+    @Override
+    public Shape getShape(String shapeType){
+       return null;
+    }
    
-   @Override
-   Color getColor(String color) {
-      if(color == null){
-         return null;
-      }        
-      if(color.equalsIgnoreCase("RED")){
-         return new Red();
-      } else if(color.equalsIgnoreCase("GREEN")){
-         return new Green();
-      } else if(color.equalsIgnoreCase("BLUE")){
-         return new Blue();
-      }
-      return null;
-   }
+    @Override
+    Color getColor(String color) {
+       if(color==null){
+          return null;
+       }
+       if(color.equalsIgnoreCase("RED")){
+          return new Red();
+       } else if(color.equalsIgnoreCase("GREEN")){
+          return new Green();
+       } else if(color.equalsIgnoreCase("BLUE")){
+          return new Blue();
+       }
+       return null;
+    }
 }
 
-步骤 7
+Step 7
 
-创建一个工厂创造器/生成器类，通过传递形状或颜色信息来获取工厂。
+Create a factory creator/generator class that gets the factory by passing shape or color information.
 
 FactoryProducer.java
 
 public class FactoryProducer {
-   public static AbstractFactory getFactory(String choice){
-      if(choice.equalsIgnoreCase("SHAPE")){
-         return new ShapeFactory();
-      } else if(choice.equalsIgnoreCase("COLOR")){
-         return new ColorFactory();
-      }
-      return null;
-   }
+    public static AbstractFactory getFactory(String choice){
+       if(choice.equalsIgnoreCase("SHAPE")){
+          return new ShapeFactory();
+       } else if(choice.equalsIgnoreCase("COLOR")){
+          return new ColorFactory();
+       }
+       return null;
+    }
 }
 
-步骤 8
+Step 8
 
-使用 FactoryProducer 来获取 AbstractFactory，通过传递类型信息来获取实体类的对象。
+Use FactoryProducer to get the AbstractFactory and get the object of the entity class by passing the type information.
 
 AbstractFactoryPatternDemo.java
 
 public class AbstractFactoryPatternDemo {
-   public static void main(String[] args) {
+    public static void main(String[] args) {
 
-      //获取形状工厂
-      AbstractFactory shapeFactory = FactoryProducer.getFactory("SHAPE");
+       //Get shape factory
+       AbstractFactory shapeFactory = FactoryProducer.getFactory("SHAPE");
 
-      //获取形状为 Circle 的对象
-      Shape shape1 = shapeFactory.getShape("CIRCLE");
+       //Get the object with shape Circle
+       Shape shape1 = shapeFactory.getShape("CIRCLE");
 
-      //调用 Circle 的 draw 方法
-      shape1.draw();
+       //Call the draw method of Circle
+       shape1.draw();
 
-      //获取形状为 Rectangle 的对象
-      Shape shape2 = shapeFactory.getShape("RECTANGLE");
+       //Get the object with shape Rectangle
+       Shape shape2 = shapeFactory.getShape("RECTANGLE");
 
-      //调用 Rectangle 的 draw 方法
-      shape2.draw();
+       //Call the draw method of Rectangle
+       shape2.draw();
       
-      //获取形状为 Square 的对象
-      Shape shape3 = shapeFactory.getShape("SQUARE");
+       //Get the object with shape Square
+       Shape shape3 = shapeFactory.getShape("SQUARE");
 
-      //调用 Square 的 draw 方法
-      shape3.draw();
+       //Call the draw method of Square
+       shape3.draw();
 
-      //获取颜色工厂
-      AbstractFactory colorFactory = FactoryProducer.getFactory("COLOR");
+       //Get color factory
+       AbstractFactory colorFactory = FactoryProducer.getFactory("COLOR");
 
-      //获取颜色为 Red 的对象
-      Color color1 = colorFactory.getColor("RED");
+       //Get the object with color Red
+       Color color1 = colorFactory.getColor("RED");
 
-      //调用 Red 的 fill 方法
-      color1.fill();
+       //Call Red's fill method
+       color1.fill();
 
-      //获取颜色为 Green 的对象
-      Color color2 = colorFactory.getColor("Green");
-
-      //调用 Green 的 fill 方法
-      color2.fill();
-
-      //获取颜色为 Blue 的对象
-      Color color3 = colorFactory.getColor("BLUE");
-
-      //调用 Blue 的 fill 方法
-      color3.fill();
-   }
-}
-
-步骤 9
-
-验证输出。
-
-Inside Circle::draw() method.
-Inside Rectangle::draw() method.
-Inside Square::draw() method.
-Inside Red::fill() method.
-Inside Green::fill() method.
-Inside Blue::fill() method.
-
+       //Get the object with color Green
+       Color color2 = colorFactory.getColor("Green");
