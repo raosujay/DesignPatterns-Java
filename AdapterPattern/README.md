@@ -1,172 +1,170 @@
+adapter mode
 
-适配器模式
+The Adapter Pattern serves as a bridge between two incompatible interfaces. This type of design pattern is a structural pattern, which combines the functionality of two independent interfaces.
 
-适配器模式（Adapter Pattern）是作为两个不兼容的接口之间的桥梁。这种类型的设计模式属于结构型模式，它结合了两个独立接口的功能。
+This pattern involves a single class that is responsible for adding independent or incompatible interface functionality. To give a real example, the card reader acts as an adapter between the memory card and the notebook. You insert the memory card into the card reader, then insert the card reader into the notebook, so that the memory card can be read through the notebook.
 
-这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。举个真实的例子，读卡器是作为内存卡和笔记本之间的适配器。您将内存卡插入读卡器，再将读卡器插入笔记本，这样就可以通过笔记本来读取内存卡。
+We demonstrate the use of the adapter pattern through the following example. Among them, the audio player device can only play mp3 files, by using a more advanced audio player to play vlc and mp4 files.
+introduce
 
-我们通过下面的实例来演示适配器模式的使用。其中，音频播放器设备只能播放 mp3 文件，通过使用一个更高级的音频播放器来播放 vlc 和 mp4 文件。
-介绍
+Intent: Convert the interface of a class into another interface that the customer wants. The Adapter pattern enables classes to work together that would otherwise not work together due to incompatible interfaces.
 
-意图：将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。
+Main solution: The main solution is that in software systems, it is often necessary to put some "existing objects" into a new environment, and the interfaces required by the new environment cannot be satisfied by the existing objects.
 
-主要解决：主要解决在软件系统中，常常要将一些"现存的对象"放到新的环境中，而新环境要求的接口是现对象不能满足的。
+When to use: 1. The system needs to use existing classes, but the interface of this class does not meet the needs of the system. 2. You want to create a class that can be reused to work with some classes that are not much related to each other, including some classes that may be introduced in the future. These source classes do not necessarily have consistent interfaces. 3. Insert one class into another class through interface conversion. (For example, tigers and birds now have a flying tiger. Without the need to add entities, add an adapter to contain a tiger object and implement the flying interface.)
 
-何时使用： 1、系统需要使用现有的类，而此类的接口不符合系统的需要。 2、想要建立一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作，这些源类不一定有一致的接口。 3、通过接口转换，将一个类插入另一个类系中。（比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现飞的接口。）
+How to solve: inheritance or dependency (recommended).
 
-如何解决：继承或依赖（推荐）。
+Key code: The adapter inherits or relies on existing objects to achieve the desired target interface.
 
-关键代码：适配器继承或依赖已有的对象，实现想要的目标接口。
+Application examples: 1. American electrical appliances are 110V and China is 220V. An adapter is required to convert 110V into 220V. 2. JAVA JDK 1.1 provides the Enumeration interface, and 1.2 provides the Iterator interface. If you want to use the 1.2 JDK, you must convert the Enumeration interface of the previous system into the Iterator interface. In this case, the adapter mode is required. 3. Run the WINDOWS program on LINUX. 4. jdbc in JAVA.
 
-应用实例： 1、美国电器 110V，中国 220V，就要有一个适配器将 110V 转化为 220V。 2、JAVA JDK 1.1 提供了 Enumeration 接口，而在 1.2 中提供了 Iterator 接口，想要使用 1.2 的 JDK，则要将以前系统的 Enumeration 接口转化为 Iterator 接口，这时就需要适配器模式。 3、在 LINUX 上运行 WINDOWS 程序。 4、JAVA 中的 jdbc。
+Advantages: 1. Any two unrelated classes can be run together. 2. Improved class reuse. 3. Increased the transparency of the class. 4. Good flexibility.
 
-优点： 1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。
+Disadvantages: 1. Excessive use of adapters will make the system very messy and difficult to grasp as a whole. For example, it is obvious that the A interface is called, but in fact it is internally adapted to the implementation of the B interface. If this happens too much in a system, it will be tantamount to a disaster. Therefore, if it is not necessary, you can reconstruct the system directly without using the adapter. 2. Since JAVA inherits at most one class, it can only adapt to at most one adapter class, and the target class must be an abstract class.
 
-缺点： 1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 2.由于 JAVA 至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。
+Usage scenario: If you are motivated to modify the interface of a normally running system, you should consider using the adapter pattern.
 
-使用场景：有动机地修改一个正常运行的系统的接口，这时应该考虑使用适配器模式。
+Note: The adapter is not added during detailed design, but to solve the problem of the project in service.
+accomplish
 
-注意事项：适配器不是在详细设计时添加的，而是解决正在服役的项目的问题。
-实现
+We have a MediaPlayer interface and an entity class AudioPlayer that implements the MediaPlayer interface. By default, AudioPlayer can play audio files in mp3 format.
 
-我们有一个 MediaPlayer 接口和一个实现了 MediaPlayer 接口的实体类 AudioPlayer。默认情况下，AudioPlayer 可以播放 mp3 格式的音频文件。
+We have another interface AdvancedMediaPlayer and entity classes that implement AdvancedMediaPlayer interface. This class can play files in vlc and mp4 formats.
 
-我们还有另一个接口 AdvancedMediaPlayer 和实现了 AdvancedMediaPlayer 接口的实体类。该类可以播放 vlc 和 mp4 格式的文件。
+We want AudioPlayer to play audio files in other formats. In order to achieve this function, we need to create an adapter class MediaAdapter that implements the MediaPlayer interface and use the AdvancedMediaPlayer object to play the required format.
 
-我们想要让 AudioPlayer 播放其他格式的音频文件。为了实现这个功能，我们需要创建一个实现了 MediaPlayer 接口的适配器类 MediaAdapter，并使用 AdvancedMediaPlayer 对象来播放所需的格式。
+AudioPlayer uses the adapter class MediaAdapter to pass the required audio type without needing to know the actual class that can play audio in the required format. AdapterPatternDemo, our demo class uses the AudioPlayer class to play various formats.
+UML diagram of adapter pattern
+step 1
 
-AudioPlayer 使用适配器类 MediaAdapter 传递所需的音频类型，不需要知道能播放所需格式音频的实际类。AdapterPatternDemo，我们的演示类使用 AudioPlayer 类来播放各种格式。
-适配器模式的 UML 图
-步骤 1
-
-为媒体播放器和更高级的媒体播放器创建接口。
+Create interfaces for media players and more advanced media players.
 
 MediaPlayer.java
 
 public interface MediaPlayer {
-   public void play(String audioType, String fileName);
+    public void play(String audioType, String fileName);
 }
 
 AdvancedMediaPlayer.java
 
-public interface AdvancedMediaPlayer {    
-   public void playVlc(String fileName);
-   public void playMp4(String fileName);
+public interface AdvancedMediaPlayer {
+    public void playVlc(String fileName);
+    public void playMp4(String fileName);
 }
 
-步骤 2
+Step 2
 
-创建实现了 AdvancedMediaPlayer 接口的实体类。
+Create an entity class that implements the AdvancedMediaPlayer interface.
 
 VlcPlayer.java
 
 public class VlcPlayer implements AdvancedMediaPlayer{
-   @Override
-   public void playVlc(String fileName) {
-      System.out.println("Playing vlc file. Name: "+ fileName);        
-   }
+    @Override
+    public void playVlc(String fileName) {
+       System.out.println("Playing vlc file. Name: "+ fileName);
+    }
 
-   @Override
-   public void playMp4(String fileName) {
-      //什么也不做
-   }
+    @Override
+    public void playMp4(String fileName) {
+       //do nothing
+    }
 }
 
 Mp4Player.java
 
 public class Mp4Player implements AdvancedMediaPlayer{
 
-   @Override
-   public void playVlc(String fileName) {
-      //什么也不做
-   }
+    @Override
+    public void playVlc(String fileName) {
+       //do nothing
+    }
 
-   @Override
-   public void playMp4(String fileName) {
-      System.out.println("Playing mp4 file. Name: "+ fileName);        
-   }
+    @Override
+    public void playMp4(String fileName) {
+       System.out.println("Playing mp4 file. Name: "+ fileName);
+    }
 }
 
-步骤 3
+Step 3
 
-创建实现了 MediaPlayer 接口的适配器类。
+Create an adapter class that implements the MediaPlayer interface.
 
 MediaAdapter.java
 
 public class MediaAdapter implements MediaPlayer {
 
-   AdvancedMediaPlayer advancedMusicPlayer;
+    AdvancedMediaPlayer advancedMusicPlayer;
 
-   public MediaAdapter(String audioType){
-      if(audioType.equalsIgnoreCase("vlc") ){
-         advancedMusicPlayer = new VlcPlayer();            
-      } else if (audioType.equalsIgnoreCase("mp4")){
-         advancedMusicPlayer = new Mp4Player();
-      }    
-   }
+    public MediaAdapter(String audioType){
+       if(audioType.equalsIgnoreCase("vlc") ){
+          advancedMusicPlayer = new VlcPlayer();
+       } else if (audioType.equalsIgnoreCase("mp4")){
+          advancedMusicPlayer = new Mp4Player();
+       }
+    }
 
-   @Override
-   public void play(String audioType, String fileName) {
-      if(audioType.equalsIgnoreCase("vlc")){
-         advancedMusicPlayer.playVlc(fileName);
-      }else if(audioType.equalsIgnoreCase("mp4")){
-         advancedMusicPlayer.playMp4(fileName);
-      }
-   }
+    @Override
+    public void play(String audioType, String fileName) {
+       if(audioType.equalsIgnoreCase("vlc")){
+          advancedMusicPlayer.playVlc(fileName);
+       }else if(audioType.equalsIgnoreCase("mp4")){
+          advancedMusicPlayer.playMp4(fileName);
+       }
+    }
 }
 
-步骤 4
+Step 4
 
-创建实现了 MediaPlayer 接口的实体类。
+Create an entity class that implements the MediaPlayer interface.
 
 AudioPlayer.java
 
 public class AudioPlayer implements MediaPlayer {
-   MediaAdapter mediaAdapter; 
+    MediaAdapter mediaAdapter;
 
-   @Override
-   public void play(String audioType, String fileName) {        
+    @Override
+    public void play(String audioType, String fileName) {
 
-      //播放 mp3 音乐文件的内置支持
-      if(audioType.equalsIgnoreCase("mp3")){
-         System.out.println("Playing mp3 file. Name: "+ fileName);            
-      } 
-      //mediaAdapter 提供了播放其他文件格式的支持
-      else if(audioType.equalsIgnoreCase("vlc") 
-         || audioType.equalsIgnoreCase("mp4")){
-         mediaAdapter = new MediaAdapter(audioType);
-         mediaAdapter.play(audioType, fileName);
-      }
-      else{
-         System.out.println("Invalid media. "+
-            audioType + " format not supported");
-      }
-   }   
+       //Built-in support for playing mp3 music files
+       if(audioType.equalsIgnoreCase("mp3")){
+          System.out.println("Playing mp3 file. Name: "+ fileName);
+       }
+       //mediaAdapter provides support for playing other file formats
+       else if(audioType.equalsIgnoreCase("vlc")
+          || audioType.equalsIgnoreCase("mp4")){
+          mediaAdapter = new MediaAdapter(audioType);
+          mediaAdapter.play(audioType, fileName);
+       }
+       else{
+          System.out.println("Invalid media. "+
+             audioType + " format not supported");
+       }
+    }
 }
 
-步骤 5
+Step 5
 
-使用 AudioPlayer 来播放不同类型的音频格式。
+Use AudioPlayer to play different types of audio formats.
 
 AdapterPatternDemo.java
 
 public class AdapterPatternDemo {
-   public static void main(String[] args) {
-      AudioPlayer audioPlayer = new AudioPlayer();
+    public static void main(String[] args) {
+       AudioPlayer audioPlayer = new AudioPlayer();
 
-      audioPlayer.play("mp3", "beyond the horizon.mp3");
-      audioPlayer.play("mp4", "alone.mp4");
-      audioPlayer.play("vlc", "far far away.vlc");
-      audioPlayer.play("avi", "mind me.avi");
-   }
+       audioPlayer.play("mp3", "beyond the horizon.mp3");
+       audioPlayer.play("mp4", "alone.mp4");
+       audioPlayer.play("vlc", "far far away.vlc");
+       audioPlayer.play("avi", "mind me.avi");
+    }
 }
 
-步骤 6
+Step 6
 
-验证输出。
+Verify the output.
 
 Playing mp3 file. Name: beyond the horizon.mp3
 Playing mp4 file. Name: alone.mp4
 Playing vlc file. Name: far far away.vlc
 Invalid media. avi format not supported
-
