@@ -59,7 +59,7 @@ Create an entity class that implements the AdvancedMediaPlayer interface.
 
 VlcPlayer.java
 
-public class VlcPlayer implements AdvancedMediaPlayer{
+public class VlcPlayer implements AdvancedMediaPlayer {
     @Override
     public void playVlc(String fileName) {
        System.out.println("Playing vlc file. Name: "+ fileName);
@@ -73,12 +73,11 @@ public class VlcPlayer implements AdvancedMediaPlayer{
 
 Mp4Player.java
 
-public class Mp4Player implements AdvancedMediaPlayer{
+public class Mp4Player implements AdvancedMediaPlayer {
     @Override
     public void playVlc(String fileName) {
        //do nothing
     }
-
     @Override
     public void playMp4(String fileName) {
        System.out.println("Playing mp4 file. Name: "+ fileName);
